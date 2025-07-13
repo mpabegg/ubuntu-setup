@@ -92,7 +92,7 @@ echo "✅ 1Password installed."
 echo "🐚 Setting Zsh as the default shell..."
 
 if [[ "$SHELL" != "$(which zsh)" ]]; then
-  chsh -s "$(which zsh)"
+  sudo chsh -s "$(which zsh)" "$USER" 
   echo "✅ Zsh is now the default shell (you may need to log out and log in again)."
 else
   echo "✅ Zsh is already the default shell."
