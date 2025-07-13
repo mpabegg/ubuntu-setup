@@ -38,15 +38,20 @@ echo "✅ Developer tools installed."
 
 
 # -------------------------------
-# 🔗 STEP 5: Stow dotfiles (zsh, tmux)
+# 🔗 STEP 5: Stow all dotfiles
 # -------------------------------
-echo "🔗 Linking dotfiles (zsh, tmux)..."
+echo "🔗 Linking all dotfiles with stow..."
+
 cd "$(dirname "$0")"
 
-[ -d "zsh" ] && stow zsh || echo "⚠️  Skipping zsh: directory not found"
-[ -d "tmux" ] && stow tmux || echo "⚠️  Skipping tmux: directory not found"
+for dir in */; do
+  [[ -f "$dir/.stowignore" ]] && continue     # optionally skip with a .stowignore
+  [[ "$dir" == "install.sh/" || "$dir" == "bootstrap.sh/" ]] && continue
+  run_step "📁 Linking $dir" stow "$dir"
+done
 
-echo "✅ Dotfiles linked."
+echo "✅ All dotfiles linked."
+
 
 
 # -------------------------------
