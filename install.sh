@@ -112,12 +112,10 @@ echo "✅ Starship installed."
 # -------------------------------
 echo "📝 Installing Zed editor..."
 
-wget -q https://zed.dev/api/releases/zed_latest_amd64.deb -O /tmp/zed.deb
+curl -f https://zed.dev/install.sh | sh > /dev/null
 
-if sudo apt-get install -y /tmp/zed.deb > /dev/null; then
+if [ $? -eq 0 ]; then
   echo "✅ Zed installed."
 else
   echo "❌ Zed installation failed."
 fi
-
-rm -f /tmp/zed.deb
