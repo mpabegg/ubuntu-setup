@@ -54,8 +54,12 @@ echo "✅ Dotfiles linked."
 # -------------------------------
 echo "🔐 Installing 1Password..."
 
+TEMP_KEYRING="/tmp/1password-archive-keyring.gpg"
+
 curl -sS https://downloads.1password.com/linux/keys/1password.asc | \
-  gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg > /dev/null
+  gpg --dearmor > "$TEMP_KEYRING"
+
+sudo install -o root -g root -m 644 "$TEMP_KEYRING" /usr/share/keyrings/1password-archive-keyring.gpg
 
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] \
 https://downloads.1password.com/linux/debian stable main" | \
