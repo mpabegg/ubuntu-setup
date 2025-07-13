@@ -113,16 +113,14 @@ echo "🌠 Installing Starship prompt..."
 curl -fsSL https://starship.rs/install.sh | sh -s -- -y > /dev/null
 echo "✅ Starship installed."
 
-
 # -------------------------------
 # 📝 STEP 9: Install Zed editor
 # -------------------------------
 echo "📝 Installing Zed editor..."
 
-curl -f https://zed.dev/install.sh | sh > /dev/null
-
-if [ $? -eq 0 ]; then
+if curl -fsSL https://zed.dev/install.sh | sh > /dev/null 2>&1; then
   echo "✅ Zed installed."
 else
   echo "❌ Zed installation failed."
 fi
+
