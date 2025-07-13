@@ -103,7 +103,7 @@ fi
 # -------------------------------
 echo "🌠 Installing Starship prompt..."
 
-curl -fsSL https://starship.rs/install.sh | bash -s -- -y > /dev/null
+curl -fsSL https://starship.rs/install.sh | sh -s -- -y > /dev/null
 echo "✅ Starship installed."
 
 
