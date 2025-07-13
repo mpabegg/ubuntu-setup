@@ -97,3 +97,27 @@ if [[ "$SHELL" != "$(which zsh)" ]]; then
 else
   echo "✅ Zsh is already the default shell."
 fi
+
+# -------------------------------
+# 🌠 STEP 8: Install Starship prompt
+# -------------------------------
+echo "🌠 Installing Starship prompt..."
+
+curl -fsSL https://starship.rs/install.sh | bash -s -- -y > /dev/null
+echo "✅ Starship installed."
+
+
+# -------------------------------
+# 📝 STEP 9: Install Zed editor
+# -------------------------------
+echo "📝 Installing Zed editor..."
+
+wget -q https://zed.dev/api/releases/zed_latest_amd64.deb -O /tmp/zed.deb
+
+if sudo apt-get install -y /tmp/zed.deb > /dev/null; then
+  echo "✅ Zed installed."
+else
+  echo "❌ Zed installation failed."
+fi
+
+rm -f /tmp/zed.deb

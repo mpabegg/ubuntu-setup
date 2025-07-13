@@ -18,57 +18,84 @@ wget -qO- https://raw.githubusercontent.com/mpabegg/ubuntu-setup/main/bootstrap.
 
 ## 📦 What It Does (So Far)
 
-1. **Updates your system**
+### 1. Updates your system
 
-   Runs:
-   ```bash
-   sudo apt update && sudo apt upgrade -y
-   ```
+Runs:
 
-2. **Installs core CLI tools**
+```bash
+sudo apt update && sudo apt upgrade -y
+```
 
-| Tool                        | Description |
-|-----------------------------|-------------|
-| `git`                      | Version control system used to manage source code |
-| `wget`                     | Command-line tool to download files over HTTP/S or FTP |
-| `curl`                     | Data transfer tool that supports many protocols (used in APIs, scripts) |
-| `unzip`                    | Extracts `.zip` archive files |
-| `gnupg`                    | Enables encryption, signing, and managing keys (used for secure package installs) |
-| `ca-certificates`          | Provides trusted SSL certificates for secure HTTPS connections |
-| `build-essential`          | Installs GCC, `make`, and libraries needed to compile most software |
-| `software-properties-common` | Adds support for `add-apt-repository` and managing PPAs |
+---
 
-3. **Installs system utilities**
+### 2. Installs core CLI tools
 
-| Tool         | Description |
-|--------------|-------------|
-| `htop`       | Interactive system monitor and process viewer |
-| `neofetch`   | Displays system info in a visually appealing way |
-| `p7zip-full` | Adds support for `.7z` archives and advanced compression formats |
-| `tree`       | Shows directory structures as a tree (recursive `ls`) |
-| `lsb-release`| Prints Ubuntu version info; useful in scripts |
+| Tool                        | Description                                                         |
+|-----------------------------|---------------------------------------------------------------------|
+| `git`                      | Version control system used to manage source code                   |
+| `wget`                     | Command-line tool to download files over HTTP/S or FTP              |
+| `curl`                     | Data transfer tool that supports many protocols                     |
+| `unzip`                    | Extracts `.zip` archive files                                       |
+| `gnupg`                    | Enables encryption, signing, and managing keys                      |
+| `ca-certificates`          | Provides trusted SSL certificates for secure HTTPS connections      |
+| `build-essential`          | Installs GCC, `make`, and required libraries for compiling software |
+| `software-properties-common` | Adds support for `add-apt-repository` and managing PPAs           |
 
-4. **Installs developer tools and dotfiles**
+---
 
-| Tool       | Description |
-|------------|-------------|
-| `zsh`      | Shell with advanced features and scripting |
-| `tmux`     | Terminal multiplexer (splits, sessions) |
-| `jq`       | Command-line JSON processor |
-| `fzf`      | Fuzzy finder for terminal |
-| `ripgrep`  | Fast search in files (better `grep`) |
-| `bat`      | Syntax-highlighted `cat` replacement |
-| `fd-find`  | User-friendly `find` alternative |
-| `stow`     | Symlink manager for dotfiles |
+### 3. Installs system utilities
+
+| Tool         | Description                                                |
+|--------------|------------------------------------------------------------|
+| `htop`       | Interactive system monitor and process viewer             |
+| `neofetch`   | Displays system info in a visually appealing way          |
+| `p7zip-full` | Adds support for `.7z` archives and advanced compression  |
+| `tree`       | Shows directory structures as a tree                      |
+| `lsb-release`| Prints Ubuntu version info; useful in scripts             |
+
+---
+
+### 4. Installs developer tools and dotfiles
+
+| Tool       | Description                                            |
+|------------|--------------------------------------------------------|
+| `zsh`      | Shell with advanced features and scripting             |
+| `tmux`     | Terminal multiplexer (splits, sessions)                |
+| `jq`       | Command-line JSON processor                            |
+| `fzf`      | Fuzzy finder for terminal                              |
+| `ripgrep`  | Fast search in files (better `grep`)                   |
+| `bat`      | Syntax-highlighted `cat` replacement                   |
+| `fd-find`  | User-friendly `find` alternative                       |
+| `stow`     | Symlink manager for dotfiles                           |
 | `zsh/`, `tmux/` | Dotfile configs linked into your home directory via `stow` |
 
-5. **Installs 1Password**
+---
 
-| Tool         | Description |
-|--------------|-------------|
-| `1password`  | Secure desktop password manager installed from the official APT repository |
+### 5. Installs 1Password
 
-6. **Sets Zsh as the default shell**
+| Tool         | Description                                  |
+|--------------|----------------------------------------------|
+| `1password`  | Secure desktop password manager              |
+
+---
+
+### 6. Installs Starship
+
+| Tool         | Description                                    |
+|--------------|------------------------------------------------|
+| `starship`   | Fast, customizable, minimal shell prompt       |
+
+---
+
+### 7. Installs Zed Editor
+
+| Tool         | Description                                    |
+|--------------|------------------------------------------------|
+| `zed`        | Modern code editor built in Rust with collab features |
+
+---
+
+### 8. Sets Zsh as the default shell
 
 Automatically runs:
 
@@ -86,10 +113,11 @@ Some things need a quick follow-up after install:
    To apply the default shell change (`zsh`), log out and back in.
 
 2. **Install the 1Password Firefox extension**  
-   You’ll need to do this manually:  
-   [🔗 Install from Mozilla Add-ons](https://addons.mozilla.org/firefox/addon/1password-x-password-manager/)
+   [🔗 1Password for Firefox](https://addons.mozilla.org/firefox/addon/1password-x-password-manager/)  
+   It will pair with the desktop app after login.
 
-   The extension will pair automatically with the desktop app once you're logged in.
+3. *(Optional)* Configure Starship  
+   Create or customize `~/.config/starship.toml` to tweak your shell prompt.
 
 ---
 
