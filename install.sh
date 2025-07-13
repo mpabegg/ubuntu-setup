@@ -54,19 +54,34 @@ echo "✅ Dotfiles linked."
 # -------------------------------
 echo "🔐 Installing 1Password..."
 
+KEYRING_FILE="/usr/share/keyrings/1password-archive-keyring.gpg"
 TEMP_KEYRING="/tmp/1password-archive-keyring.gpg"
 
-curl -sS https://downloads.1password.com/linux/keys/1password.asc | \
-  gpg --dearmor > "$TEMP_KEYRING"
+# Download and dearmor
+curl -fsSL https://downloads.1password.com/linux/keys/1password.asc | \
+  gpg --dearmor -o "$TEMP_KEYRING"
 
-sudo install -o root -g root -m 644 "$TEMP_KEYRING" /usr/share/keyrings/1password-archive-keyring.gpg
+sudo install -o root -g root -m 644 "$TEMP_KEYRING" "$KEYRING_FILE"
 
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] \
-https://downloads.1password.com/linux/debian stable main" | \
+# Add the correct repo (note the /amd64 path)
+echo "deb [arch=$(dpkg --print-architecture) signed-by=$KEYRING_FILE] \
+https://downloads.1password.com/linux/debian/amd64 stable main" | \
   sudo tee /etc/apt/sources.list.d/1password.list > /dev/null
 
+# Add the debsig policy as per support docs
+sudo mkdir -p /etc/debsig/policies/AC2D62742012EA22/
+sudo curl -fsSL https://downloads.1password.com/linux/debian/debsig/1password.pol \
+  | sudo tee /etc/debsig/policies/AC2D62742012EA22/1password.pol > /dev/null
+
+sudo mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22
+curl -fsSL https://downloads.1password.com/linux/keys/1password.asc \
+  | gpg --dearmor | sudo tee /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg > /dev/null
+
 sudo apt-get update -qq > /dev/null
-sudo apt-get install -y 1password -qq > /dev/null
+sudo apt-get install -y 1password -qq > /dev/null || {
+  echo "❌ 1Password installation failed."
+  exit 1
+}
 
 echo "✅ 1Password installed."
 
