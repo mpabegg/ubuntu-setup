@@ -66,8 +66,10 @@ sudo apt update && sudo apt upgrade -y
 | `ripgrep`  | Fast search in files (better `grep`)                   |
 | `bat`      | Syntax-highlighted `cat` replacement                   |
 | `fd-find`  | User-friendly `find` alternative                       |
+| `exa`      | Modern replacement for `ls`, with colors and Git support |
 | `stow`     | Symlink manager for dotfiles                           |
 | `zsh/`, `tmux/` | Dotfile configs linked into your home directory via `stow` |
+
 
 ---
 
