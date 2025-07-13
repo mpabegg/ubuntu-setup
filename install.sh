@@ -40,19 +40,21 @@ echo "✅ Developer tools installed."
 # -------------------------------
 # 🔗 STEP 5: Stow all dotfiles
 # -------------------------------
-echo "🔗 Linking all dotfiles with stow..."
-
+echo "🔗 Linking dotfiles..."
 cd "$(dirname "$0")"
 
 for dir in */; do
-  [[ -f "$dir/.stowignore" ]] && continue     # optionally skip with a .stowignore
-  [[ "$dir" == "install.sh/" || "$dir" == "bootstrap.sh/" ]] && continue
-  run_step "📁 Linking $dir" stow "$dir"
+  # Skip non-directories and known script files
+  [[ "$dir" == "bootstrap.sh/" || "$dir" == "install.sh/" ]] && continue
+  [[ -f "$dir/.stowignore" ]] && continue
+
+  if [ -d "$dir" ]; then
+    echo "➡️  Stowing: $dir"
+    stow "$dir"
+  fi
 done
 
 echo "✅ All dotfiles linked."
-
-
 
 # -------------------------------
 # 🔐 STEP 6: Install 1Password
