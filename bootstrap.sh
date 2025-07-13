@@ -20,3 +20,14 @@ sudo apt install -y \
   software-properties-common
 
 echo "✅ CLI essentials installed."
+
+echo "🖥️ Installing system utilities..."
+
+sudo apt install -y \
+  htop \
+  neofetch \
+  p7zip-full \
+  tree \
+  lsb-release
+
+echo "✅ System utilities installed."

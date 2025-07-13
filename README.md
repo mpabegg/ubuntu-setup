@@ -2,7 +2,7 @@
 
 🛠️ Minimal setup script for configuring a fresh Ubuntu install.
 
-This repository will grow step by step. The current version **only updates the system**.
+This repository will grow step by step. The current version updates the system and installs essential CLI and system tools.
 
 ---
 
@@ -12,6 +12,9 @@ This repository will grow step by step. The current version **only updates the s
 
 ```bash
 wget -qO- https://raw.githubusercontent.com/mpabegg/ubuntu-setup/main/bootstrap.sh | bash
+```
+
+---
 
 ## 📦 What It Does (So Far)
 
@@ -26,5 +29,31 @@ wget -qO- https://raw.githubusercontent.com/mpabegg/ubuntu-setup/main/bootstrap.
 | `unzip`                    | Extracts `.zip` archive files |
 | `gnupg`                    | Enables encryption, signing, and managing keys (used for secure package installs) |
 | `ca-certificates`          | Provides trusted SSL certificates for secure HTTPS connections |
-| `build-essential`         | Installs GCC, `make`, and libraries needed to compile most software |
+| `build-essential`          | Installs GCC, `make`, and libraries needed to compile most software |
 | `software-properties-common` | Adds support for `add-apt-repository` and managing PPAs |
+
+3. Installs system utilities:
+
+| Tool         | Description |
+|--------------|-------------|
+| `htop`       | Interactive system monitor and process viewer |
+| `neofetch`   | Displays system info in a visually appealing way |
+| `p7zip-full` | Adds support for `.7z` archives and advanced compression formats |
+| `tree`       | Shows directory structures as a tree (recursive `ls`) |
+| `lsb-release`| Prints Ubuntu version info; useful in scripts |
+
+---
+
+## 📁 Structure
+
+```
+ubuntu-setup/
+├── bootstrap.sh        # Main install script
+├── README.md
+```
+
+---
+
+## 📜 License
+
+MIT – use freely, customize wildly.
