@@ -1,5 +1,7 @@
 #!/usr/local/bin/zsh
 
+setopt NULL_GLOB
+
 # Use emacs keybindings
 bindkey -e
 
@@ -49,8 +51,9 @@ source "$ZDOTDIR/zsh-functions"
 zsh_init_plugins
 
 # Source all .zsh files in the adds directory
-for f in $ZDOTDIR/adds/*.zsh; do
-  source $f
+# Custom adds directory (optional)
+for file in "$HOME/.config/zsh/adds/"*.zsh(N); do
+  source "$file"
 done
 
 # Source aliases

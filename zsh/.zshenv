@@ -18,18 +18,12 @@ export BUNDLE_USER_CACHE="$XDG_CACHE_HOME"/bundle
 export BUNDLE_USER_CONFIG="$XDG_CONFIG_HOME"/bundle/config
 export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME"/bundle
 
-# Rust
-export CARGO_HOME="$XDG_DATA_HOME"/cargo
-
 # Docker
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 
 # ASDF
 export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME"/asdf/asdfrc
 export ASDF_DATA_DIR="$XDG_DATA_HOME"/asdf
-
-# This prevents Apple Terminal from cluttering the .config/zsh folder with .zsh_sessions
-export SHELL_SESSIONS_DISABLE=1
 
 if [[ $OSTYPE == linux-gnu* ]]; then
   export LC_ALL=en_US.utf-8
@@ -40,7 +34,3 @@ else
   export LANG=en_US.UTF-8
   export LC_CTYPE=en_US.UTF-8
 fi
-
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-. "/Users/mpa/.local/share/cargo/env"
