@@ -4,6 +4,12 @@ set -euo pipefail
 REPO_URL="https://github.com/mpabegg/ubuntu-setup.git"
 CLONE_DIR="$HOME/.dotfiles"
 
+# Install git if not present
+if ! command -v git >/dev/null 2>&1; then
+  echo "📦 'git' not found. Installing it..."
+  sudo apt update && sudo apt install -y git
+fi
+
 echo "📥 Cloning ubuntu-setup into $CLONE_DIR..."
 rm -rf "$CLONE_DIR"
 git clone --depth=1 "$REPO_URL" "$CLONE_DIR"
