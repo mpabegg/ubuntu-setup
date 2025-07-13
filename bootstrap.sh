@@ -4,6 +4,10 @@ set -euo pipefail
 REPO_URL="https://github.com/mpabegg/ubuntu-setup.git"
 CLONE_DIR="$HOME/.dotfiles"
 
+# Ask for sudo password once at the beginning
+echo "🔐 Requesting sudo access upfront..."
+sudo -v
+
 # Install git if not present
 if ! command -v git >/dev/null 2>&1; then
   echo "📦 'git' not found. Installing it..."
