@@ -1,14 +1,14 @@
 # ubuntu-setup
 
-🛠️ Minimal setup script for configuring a fresh Ubuntu install.
+🛠️ Minimal setup script for configuring a fresh Ubuntu install with essential tools for development, system utilities, and password management.
 
-This repository will grow step by step. The current version updates the system and installs essential CLI, system, and developer tools.
+> ⚠️ I'm vibe coding the whole thing to know how it feels.
 
 ---
 
 ## ⚡ Quick Install
 
-> ⚠️ Review the script before running.
+> ✅ This will clone the repo into `~/.dotfiles` and run the install script automatically.
 
 ```bash
 wget -qO- https://raw.githubusercontent.com/mpabegg/ubuntu-setup/main/bootstrap.sh | bash
@@ -18,8 +18,14 @@ wget -qO- https://raw.githubusercontent.com/mpabegg/ubuntu-setup/main/bootstrap.
 
 ## 📦 What It Does (So Far)
 
-1. Updates your system (`apt update && apt upgrade`)
-2. Installs core CLI tools:
+1. **Updates your system**
+
+   Runs:
+   ```bash
+   sudo apt update && sudo apt upgrade -y
+   ```
+
+2. **Installs core CLI tools**
 
 | Tool                        | Description |
 |-----------------------------|-------------|
@@ -32,7 +38,7 @@ wget -qO- https://raw.githubusercontent.com/mpabegg/ubuntu-setup/main/bootstrap.
 | `build-essential`          | Installs GCC, `make`, and libraries needed to compile most software |
 | `software-properties-common` | Adds support for `add-apt-repository` and managing PPAs |
 
-3. Installs system utilities:
+3. **Installs system utilities**
 
 | Tool         | Description |
 |--------------|-------------|
@@ -42,7 +48,7 @@ wget -qO- https://raw.githubusercontent.com/mpabegg/ubuntu-setup/main/bootstrap.
 | `tree`       | Shows directory structures as a tree (recursive `ls`) |
 | `lsb-release`| Prints Ubuntu version info; useful in scripts |
 
-4. Installs developer tools:
+4. **Installs developer tools and dotfiles**
 
 | Tool       | Description |
 |------------|-------------|
@@ -54,8 +60,36 @@ wget -qO- https://raw.githubusercontent.com/mpabegg/ubuntu-setup/main/bootstrap.
 | `bat`      | Syntax-highlighted `cat` replacement |
 | `fd-find`  | User-friendly `find` alternative |
 | `stow`     | Symlink manager for dotfiles |
+| `zsh/`, `tmux/` | Dotfile configs linked into your home directory via `stow` |
 
-If `zsh/` and `tmux/` folders are present in this repo, they will be symlinked to your home directory using `stow`.
+5. **Installs 1Password**
+
+| Tool         | Description |
+|--------------|-------------|
+| `1password`  | Secure desktop password manager installed from the official APT repository |
+
+6. **Sets Zsh as the default shell**
+
+Automatically runs:
+
+```bash
+chsh -s $(which zsh)
+```
+
+---
+
+## 🔧 Manual Steps After Install
+
+Some things need a quick follow-up after install:
+
+1. **Restart your session**  
+   To apply the default shell change (`zsh`), log out and back in.
+
+2. **Install the 1Password Firefox extension**  
+   You’ll need to do this manually:  
+   [🔗 Install from Mozilla Add-ons](https://addons.mozilla.org/firefox/addon/1password-x-password-manager/)
+
+   The extension will pair automatically with the desktop app once you're logged in.
 
 ---
 
@@ -63,9 +97,10 @@ If `zsh/` and `tmux/` folders are present in this repo, they will be symlinked t
 
 ```
 ubuntu-setup/
-├── bootstrap.sh        # Main install script
-├── zsh/                # (Optional) Zsh config
-├── tmux/               # (Optional) Tmux config
+├── bootstrap.sh        # Thin entry point — clones the repo into ~/.dotfiles
+├── install.sh          # Full setup logic
+├── zsh/                # zsh config (.zshrc)
+├── tmux/               # tmux config (.tmux.conf)
 ├── README.md
 ```
 
@@ -73,4 +108,4 @@ ubuntu-setup/
 
 ## 📜 License
 
-MIT – use freely, customize wildly.
+MIT – use freely, customize wildly, vibe accordingly.
