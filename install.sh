@@ -124,3 +124,29 @@ else
   echo "❌ Zed installation failed."
 fi
 
+# -------------------------------
+# 🔤 STEP 10: Install custom fonts from Google Drive
+# -------------------------------
+echo "🔤 Installing custom fonts..."
+
+FONT_DIR="$HOME/.local/share/fonts"
+mkdir -p "$FONT_DIR"
+
+# Install gdown if not available
+if ! command -v gdown &>/dev/null; then
+  echo "📥 Installing gdown..."
+  sudo apt-get install -y gdown > /dev/null
+fi
+
+# Replace with your actual file ID from Google Drive
+FONT_FILE_ID="1BKd0LnsDXyIeo0ABKhnOHd5Iez2is69Z"
+FONT_ZIP="/tmp/custom_fonts.zip"
+
+# Download silently
+gdown --id "$FONT_FILE_ID" -O "$FONT_ZIP" > /dev/null 2>&1
+
+# Unzip and refresh font cache
+unzip -q "$FONT_ZIP" -d "$FONT_DIR"
+fc-cache -f > /dev/null
+
+echo "✅ Custom fonts installed."
