@@ -19,7 +19,7 @@ fi
 
 echo "📥 Cloning ubuntu-setup into $CLONE_DIR..."
 rm -rf "$CLONE_DIR"
-git clone --depth=1 "$REPO_URL" "$CLONE_DIR" > /dev/null 2>&1
+git clone --quiet --depth=1 "$REPO_URL" "$CLONE_DIR"
 
 echo "🚀 Running full setup..."
 cd "$CLONE_DIR"
