@@ -1,28 +1,36 @@
 #!/usr/bin/env zsh
 
-setopt NULL_GLOB
+# ----------------------------------------
+# ⚙️  Basic Shell Behavior
+# ----------------------------------------
 
-# Use emacs keybindings
-bindkey -e
+setopt NULL_GLOB             # Globs that don't match expand to nothing (no error)
+bindkey -e                   # Use Emacs-style keybindings
 
-# Set up completion caching
+# ----------------------------------------
+# 🧠 Completion System Configuration
+# ----------------------------------------
+
+# Set completion cache location and enable menu selection (like arrow-key menus)
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache/"
 zstyle ':completion:*' menu select
 
-# Initialize Starship prompt (if available)
+# ----------------------------------------
+# 🌠 Optional: Starship Prompt
+# ----------------------------------------
+
+# Initialize Starship prompt if available (cross-shell statusline)
 if command -v starship &>/dev/null; then
   eval "$(starship init zsh)"
 fi
 
-# Load completions (Homebrew or fallback)
-autoload -Uz compinit
+# ----------------------------------------
+# 🧩 Completion Initialization
+# ----------------------------------------
 
-# Add Homebrew completions if available
-if command -v brew &>/dev/null; then
-  FPATH="$(brew --prefix)/share/zsh/site-functions:$FPATH"
-fi
+autoload -Uz compinit        # Load Zsh completion system
 
-# Regenerate zcompdump if older than 20 hours
+# Regenerate the zcompdump file if it's more than ~20 hours old
 _comp_files=($XDG_CACHE_HOME/zsh/zcompdump(Nm-20))
 if (( $#_comp_files )); then
   compinit -i -C -d "$XDG_CACHE_HOME/zsh/zcompdump"
@@ -31,44 +39,62 @@ else
 fi
 unset _comp_files
 
-# Add custom function directories to fpath and autoload them
+# ----------------------------------------
+# 🛠️ Autoload Custom Functions
+# ----------------------------------------
+
+# Add all subfolders of $ZDOTDIR/functions/ to fpath
 fpath=($ZDOTDIR/functions/**/ $fpath)
+
+# Autoload all function files inside that path
 autoload -U $ZDOTDIR/functions/**/*(.:t)
 
-# Load zsh/complist module and set completion options
-zmodload zsh/complist
-_comp_options+=(globdots)
+# ----------------------------------------
+# 🎨 UI Enhancements
+# ----------------------------------------
 
-# Load colors
-autoload -Uz colors && colors
+zmodload zsh/complist        # Enable advanced completion features (e.g., selection UI)
+_comp_options+=(globdots)    # Include dotfiles in completion results
+autoload -Uz colors && colors  # Enable and load color definitions
 
-# Source custom functions and initialize plugins
+# ----------------------------------------
+# 🔌 Load Custom Init and Plugins
+# ----------------------------------------
+
+# Source custom function definitions if the file exists
 [[ -f "$ZDOTDIR/zsh-functions" ]] && source "$ZDOTDIR/zsh-functions"
+
+# Initialize plugins if the function is defined
 command -v zsh_init_plugins &>/dev/null && zsh_init_plugins
 
-# Source all .zsh files in the adds directory
+# Source all .zsh files in ~/.config/zsh/adds/ if they exist
 for file in "$HOME/.config/zsh/adds/"*.zsh(N); do
   source "$file"
 done
 
-# Source aliases
+# ----------------------------------------
+# 🧾 Aliases and Plugin Setup
+# ----------------------------------------
+
+# Source user-defined aliases if the file exists
 [[ -f "$ZDOTDIR/alias.zsh" ]] && source "$ZDOTDIR/alias.zsh"
 
-# Add and configure plugins
-zsh_add_plugin "zimfw/environment"
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#949494"
-zsh_add_plugin "zsh-users/zsh-autosuggestions"
-zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
+# Add plugins manually (can be used by your zsh_add_plugin helper)
+zsh_add_plugin "zimfw/environment"                      # Loads environment settings
+zsh_add_plugin "zsh-users/zsh-autosuggestions"          # Shows command suggestions as you type
+zsh_add_plugin "zsh-users/zsh-syntax-highlighting"      # Highlights commands and syntax in real time
 
-# Set keybinding for accepting autosuggestions
+# Configure autosuggestions (accept suggestion with Ctrl+Y)
 bindkey '^Y' autosuggest-accept
+
+# Disable bell sounds
 set bell-style off
 
-# Set environment variables
-export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-export ARCHFLAGS="-arch $(uname -m)"
+# ----------------------------------------
+# 🛣️ PATH Setup
+# ----------------------------------------
 
-# Modify PATH (remove mac-only paths, only include relevant ones)
+# Add local user binaries, system sbin, and optional Neovim paths
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
