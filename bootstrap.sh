@@ -7,8 +7,8 @@ CLONE_DIR="$HOME/.dotfiles"
 # Install git if not present
 if ! command -v git >/dev/null 2>&1; then
   echo "📦 'git' not found. Installing it..."
-  sudo apt update -qq > /dev/null
-  sudo apt install -y git -qq > /dev/null
+  sudo apt-get update -qq > /dev/null
+  sudo apt-get install -y git -qq > /dev/null
 fi
 
 echo "📥 Cloning ubuntu-setup into $CLONE_DIR..."

@@ -5,7 +5,7 @@ set -euo pipefail
 # 🔧 STEP 1: Update the system
 # -------------------------------
 echo "🔧 Updating system..."
-sudo apt update -qq > /dev/null && sudo apt upgrade -y -qq > /dev/null
+sudo apt-get update -qq > /dev/null && sudo apt-get upgrade -y -qq > /dev/null
 echo "✅ System updated."
 
 
@@ -13,7 +13,7 @@ echo "✅ System updated."
 # 📦 STEP 2: Install CLI essentials
 # -------------------------------
 echo "📦 Installing CLI essentials..."
-sudo apt install -y -qq > /dev/null \
+sudo apt-get install -y -qq > /dev/null \
   git wget curl unzip gnupg ca-certificates \
   build-essential software-properties-common
 echo "✅ CLI essentials installed."
@@ -23,7 +23,7 @@ echo "✅ CLI essentials installed."
 # 🖥️ STEP 3: Install system utilities
 # -------------------------------
 echo "🖥️ Installing system utilities..."
-sudo apt install -y -qq > /dev/null \
+sudo apt-get install -y -qq > /dev/null \
   htop neofetch p7zip-full tree lsb-release
 echo "✅ System utilities installed."
 
@@ -32,7 +32,7 @@ echo "✅ System utilities installed."
 # 🧑‍💻 STEP 4: Install developer tools
 # -------------------------------
 echo "🧑‍💻 Installing developer tools..."
-sudo apt install -y -qq > /dev/null \
+sudo apt-get install -y -qq > /dev/null \
   zsh tmux jq fzf ripgrep bat fd-find stow
 echo "✅ Developer tools installed."
 
@@ -61,8 +61,8 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/1pass
 https://downloads.1password.com/linux/debian stable main" | \
   sudo tee /etc/apt/sources.list.d/1password.list > /dev/null
 
-sudo apt update -qq > /dev/null
-sudo apt install -y 1password -qq > /dev/null
+sudo apt-get update -qq > /dev/null
+sudo apt-get install -y 1password -qq > /dev/null
 
 echo "✅ 1Password installed."
 
