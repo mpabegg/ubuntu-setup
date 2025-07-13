@@ -33,7 +33,7 @@ echo "✅ System utilities installed."
 # -------------------------------
 echo "🧑‍💻 Installing developer tools..."
 sudo apt-get install -y -qq > /dev/null \
-  zsh tmux jq fzf ripgrep bat fd-find stow exa
+  zsh tmux jq fzf ripgrep bat fd-find stow eza
 echo "✅ Developer tools installed."
 
 

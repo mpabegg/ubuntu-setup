@@ -1,5 +1,6 @@
 alias t="tmux_switch_or_create.sh"
 
+alias exa="eza"
 alias ls="exa"
 alias ll="exa -la"
 alias l="exa"
