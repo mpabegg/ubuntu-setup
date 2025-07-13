@@ -2,7 +2,7 @@
 
 🛠️ Minimal setup script for configuring a fresh Ubuntu install.
 
-This repository will grow step by step. The current version updates the system and installs essential CLI and system tools.
+This repository will grow step by step. The current version updates the system and installs essential CLI, system, and developer tools.
 
 ---
 
@@ -42,6 +42,21 @@ wget -qO- https://raw.githubusercontent.com/mpabegg/ubuntu-setup/main/bootstrap.
 | `tree`       | Shows directory structures as a tree (recursive `ls`) |
 | `lsb-release`| Prints Ubuntu version info; useful in scripts |
 
+4. Installs developer tools:
+
+| Tool       | Description |
+|------------|-------------|
+| `zsh`      | Shell with advanced features and scripting |
+| `tmux`     | Terminal multiplexer (splits, sessions) |
+| `jq`       | Command-line JSON processor |
+| `fzf`      | Fuzzy finder for terminal |
+| `ripgrep`  | Fast search in files (better `grep`) |
+| `bat`      | Syntax-highlighted `cat` replacement |
+| `fd-find`  | User-friendly `find` alternative |
+| `stow`     | Symlink manager for dotfiles |
+
+If `zsh/` and `tmux/` folders are present in this repo, they will be symlinked to your home directory using `stow`.
+
 ---
 
 ## 📁 Structure
@@ -49,6 +64,8 @@ wget -qO- https://raw.githubusercontent.com/mpabegg/ubuntu-setup/main/bootstrap.
 ```
 ubuntu-setup/
 ├── bootstrap.sh        # Main install script
+├── zsh/                # (Optional) Zsh config
+├── tmux/               # (Optional) Tmux config
 ├── README.md
 ```
 
