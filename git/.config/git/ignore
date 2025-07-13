@@ -1,0 +1,7 @@
+**/*.swp
+**/.worktrees
+.tags
+.tags*
+.DS_Store
+.env*
+.#*
