@@ -112,7 +112,6 @@
     "button": false
   },
   "agent": {
-    "version": "2",
     // The default model to use when creating new threads.
     "default_model": {
       // The provider to use.
